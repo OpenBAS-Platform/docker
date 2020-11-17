@@ -1,0 +1,38 @@
+version: '3'
+services:
+  pgsql:
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_USER: openex
+      POSTGRES_PASSWORD: openex
+      POSTGRES_DB: openex
+    volumes:
+      - pgsqldata:/var/lib/postgresql/data
+    restart: always
+  openex:
+    image: openexhq/platform:2.0.0
+    environment:
+      - APP_ENV=production
+      - APP_SECRET=cdb93cc2fee3428d971f1bab6995b939
+      - ADMIN_TOKEN=4d0f2158-063a-4b2b-bc99-c1cb0d082b11
+      - DATABASE_URL=pgsql://openex:openex@pgsql:5432/openex
+      - MAILER_URL=smtp://username:password@smtp.mail.com
+      - PLAYER_URL=http://player:8080
+    ports:
+      - "8080:80"
+    volumes:
+      - openexdata:/opt/openex/var
+    depends_on:
+      - pgsql
+    restart: always
+  player:
+    image: openexhq/player:2.0.0
+    environment:
+      - OPENEX_API=http://openex/api/injects
+      - OPENEX_TOKEN=4d0f2158-063a-4b2b-bc99-c1cb0d082b11
+    depends_on:
+      - openex
+    restart: always
+volumes:
+  pgsqldata:
+  openexdata:
