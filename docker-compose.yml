@@ -10,7 +10,7 @@ services:
       - pgsqldata:/var/lib/postgresql/data
     restart: always
   openex:
-    image: openexhq/platform:2.0.0
+    image: openexhq/platform:rolling
     environment:
       - APP_ENV=production
       - APP_SECRET=cdb93cc2fee3428d971f1bab6995b939
@@ -26,10 +26,18 @@ services:
       - pgsql
     restart: always
   player:
-    image: openexhq/player:2.0.0
+    image: openexhq/player:rolling
     environment:
       - OPENEX_API=http://openex/api/injects
       - OPENEX_TOKEN=4d0f2158-063a-4b2b-bc99-c1cb0d082b11
+      - SPRING_MAIL_HOST=smtp.mail.com
+      - SPRING_MAIL_PORT=25
+      - SPRING_MAIL_USERNAME=user
+      - SPRING_MAIL_PASSWORD=pass
+      - SPRING_MAIL_PROPERTIES_MAIL_SMTP_SSL_TRUST=*
+      - SPRING_MAIL_PROPERTIES_MAIL_SMTP_SSL_ENABLE=false
+      - SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH=false
+      - SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE=false
     depends_on:
       - openex
     restart: always

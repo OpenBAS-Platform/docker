@@ -12,13 +12,18 @@ $ cd docker
 
 ## Data persistence
 
-If you wish your OpenEx data to be persistent in production, you should be aware of the  `volumes` section for `PostgreSQL` service in the `docker-compose.yml`.
+If you wish your OpenEx data to be persistent in production, you should be aware of the  `volumes` section for `PostgreSQL` service and `OpenEx` platform in the `docker-compose.yml`.
 
 Here is an example of volumes configuration:
 
 ```yaml
 volumes:
   pgsqldata:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+  openexdata:
     driver: local
     driver_opts:
       o: bind
