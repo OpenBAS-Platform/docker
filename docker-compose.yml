@@ -28,7 +28,7 @@ services:
   player:
     image: openexhq/player:rolling
     environment:
-      - OPENEX_API=http://openex/api/injects
+      - OPENEX_API=http://openex/api
       - OPENEX_TOKEN=4d0f2158-063a-4b2b-bc99-c1cb0d082b11
       - SPRING_MAIL_HOST=smtp.mail.com
       - SPRING_MAIL_PORT=25
