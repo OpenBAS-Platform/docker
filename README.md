@@ -1,10 +1,10 @@
 # OpenEx Docker deployment
 
-OpenCTI can be deployed using the *docker-compose* command.
+OpenEx can be deployed using the *docker-compose* command.
 
 ## Pre-requisites
 
-To install OpenCTI using Docker, you will need the docker-compose command, you can install it using:
+To install OpenEx using Docker, you will need the docker-compose command, you can install it using:
 
 ```bash
 $ sudo apt-get install docker-compose
@@ -65,7 +65,7 @@ Then, you have to put your environment variables in the `/etc/environment` and t
 
 ```bash
 $ sudo source /etc/environment
-$ sudo docker stack deploy --compose-file docker-compose.yml opencti
+$ sudo docker stack deploy --compose-file docker-compose.yml openex
 ```
 
 You can now go to [http://localhost:8080](http://localhost:8080/) and log in with the credentials configured in your environment variables.
@@ -129,4 +129,3 @@ The minimal recommended option today is -Xms1G -Xmx1G.
 PostgreSQL is the main database of OpenEx.
 
 You can find more information in the [official PostgresQL documentation](https://hub.docker.com/_/postgres).
-```
