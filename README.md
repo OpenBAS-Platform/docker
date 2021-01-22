@@ -68,7 +68,10 @@ $ sudo source /etc/environment
 $ sudo docker stack deploy --compose-file docker-compose.yml openex
 ```
 
-You can now go to [http://localhost:8080](http://localhost:8080/) and log in with the credentials configured in your environment variables.
+You can now go to [http://localhost:8080](http://localhost:8080/) and log in with the default credentials:
+
+- Login: admin@openex.io
+- Password: admin
 
 ## Update
 
