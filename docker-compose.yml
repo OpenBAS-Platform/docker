@@ -10,7 +10,7 @@ services:
       - pgsqldata:/var/lib/postgresql/data
     restart: always
   openex:
-    image: openexhq/platform:v2.0.0
+    image: openexhq/platform:v2.0.1
     environment:
       - APP_SECRET=${APP_SECRET}
       - ADMIN_TOKEN=${ADMIN_TOKEN}
@@ -27,7 +27,7 @@ services:
       - pgsql
     restart: always
   player:
-    image: openexhq/player:v2.0.0
+    image: openexhq/player:v2.0.1
     environment:
       - OPENEX_API=http://openex/api
       - OPENEX_TOKEN=${ADMIN_TOKEN}
