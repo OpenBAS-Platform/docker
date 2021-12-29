@@ -22,17 +22,17 @@ $ cd docker
 
 Before running the `docker-compose` command, the `docker-compose.yml` file must be configured.  Two ways to do that:
 
-- Use environment variables as it is proposed and you have an exemple in the `.env.sample` file (ie. `ADMIN_TOKEN=${ADMIN_TOKEN}`).
+- Use environment variables as it is proposed and you have an exemple in the `.env.sample` file (ie. `POSTGRES_USER=${POSTGRES_USER}`).
 - Directly set the parameters in the `docker-compose.yml`.
 
  Whether you are using one method or the other, here are the mandatory parameters to fill:
 
 ```bash
-APP_SECRET=ChangeMe # Valid UUIDv4
-ADMIN_TOKEN=ChangeMe # Valid UUIDv4
-COOKIE_SECURE=false
-AUTH_LOCAL_ENABLE=true
-MAILER_URL=smtp://username:password@smtp.changeme.com
+POSTGRES_USER=ChangeMe
+POSTGRES_PASSWORD=ChangeMe
+KEYSTORE_PASSWORD=ChangeMe
+MINIO_ROOT_USER=ChangeMeAccess
+MINIO_ROOT_PASSWORD=ChangeMeKey
 SPRING_MAIL_HOST=smtp.changeme.com
 SPRING_MAIL_PORT=25
 SPRING_MAIL_USERNAME=ChangeMe@domain.com
@@ -104,7 +104,7 @@ volumes:
     driver_opts:
       o: bind
       type: none
-  openexdata:
+  s3data:
     driver: local
     driver_opts:
       o: bind
@@ -117,13 +117,7 @@ OpenEx default `docker-compose.yml` file does not provide any specific memory co
 
 ### OpenEx - Platform
 
-OpenEx platform is based on Symfony 5 (PHP) and the main Docker container is running an Apache 2 server. This server runs with a memory limit of **512MB by default**.
-
-You can find more information in the [official Apache 2 documentation](https://hub.docker.com/_/httpd)
-
-### OpenEx - Player
-
-OpenEx player is a JAVA process. In order to setup the JAVA memory allocation, you can use the environment variable `ES_JAVA_OPTS`.
+The OpenEx platform is based on Spring Boot (JAVA) and the main Docker container is running a JAVA process.  In order to setup the JAVA memory allocation, you can use the environment variable `ES_JAVA_OPTS`.
 
 The minimal recommended option today is -Xms1G -Xmx1G.
 
@@ -132,3 +126,7 @@ The minimal recommended option today is -Xms1G -Xmx1G.
 PostgreSQL is the main database of OpenEx.
 
 You can find more information in the [official PostgresQL documentation](https://hub.docker.com/_/postgres).
+
+### MinIO
+
+MinIO is a small process and does not require a high amount of memory. More information are available for Linux here on the [Kernel tuning guide](https://github.com/minio/minio/tree/master/docs/deployment/kernel-tuning).
