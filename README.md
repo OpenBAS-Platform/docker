@@ -117,7 +117,7 @@ OpenEx default `docker-compose.yml` file does not provide any specific memory co
 
 ### OpenEx - Platform
 
-The OpenEx platform is based on Spring Boot (JAVA) and the main Docker container is running a JAVA process.  In order to setup the JAVA memory allocation, you can use the environment variable `ES_JAVA_OPTS`.
+The OpenEx platform is based on Spring (JAVA) and the main Docker container is running a JAVA process.  In order to setup the JAVA memory allocation, you can use the environment variable `ES_JAVA_OPTS`.
 
 The minimal recommended option today is -Xms1G -Xmx1G.
 
