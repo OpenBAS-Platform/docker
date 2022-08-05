@@ -1,7 +1,7 @@
 version: '3'
 services:
   pgsql:
-    image: postgres:13-alpine
+    image: postgres:14-alpine
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -10,7 +10,7 @@ services:
       - pgsqldata:/var/lib/postgresql/data
     restart: always
   minio:
-    image: minio/minio:RELEASE.2022-02-05T04-40-59Z
+    image: minio/minio: RELEASE.2022-08-02T23-59-16Z
     volumes:
       - s3data:/data
     ports:
