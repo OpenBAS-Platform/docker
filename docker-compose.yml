@@ -10,7 +10,7 @@ services:
       - pgsqldata:/var/lib/postgresql/data
     restart: always
   minio:
-    image: minio/minio:RELEASE.2022-08-02T23-59-16Z
+    image: minio/minio:RELEASE.2022-10-08T20-11-00Z
     volumes:
       - s3data:/data
     ports:
@@ -26,7 +26,7 @@ services:
       retries: 3
     restart: always
   openex:
-    image: openexhq/platform:v3.1.0
+    image: openexhq/platform:v3.2.0
     environment:
       - SERVER_SSL_KEY-STORE-PASSWORD=${KEYSTORE_PASSWORD}
       - OPENEX_BASE-URL=http://localhost:8080
