@@ -135,4 +135,6 @@ MinIO is a small process and does not require a high amount of memory. More info
 
 ### Authors
 
-OpenEx is a product powered by the collaboration of the private company [Filigran](https://www.filigran.io), the [French national cybersecurity agency (ANSSI)](https://ssi.gouv.fr), the [CERT-EU](https://cert.europa.eu) and the [Luatix](https://www.luatix.org) non-profit organization.
+OpenEx is a product designed and developed by the company [Filigran](https://www.filigran.io).
+
+<a href="https://www.filigran.io" alt="Filigran"><img src="https://www.filigran.io/wp-content/uploads/2022/08/filigran_text_horizontal_dense_margin.png" width="230" /></a>
