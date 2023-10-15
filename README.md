@@ -20,4 +20,4 @@ If you need support or you wish to engage a discussion about the OpenEx platform
 
 OpenEx is a product designed and developed by the company [Filigran](https://filigran.io).
 
-<a href="https://filigran.io" alt="Filigran"><img src="https://www.filigran.io/wp-content/uploads/2022/08/filigran_text_horizontal_dense_margin.png" width="230" /></a>
+<a href="https://filigran.io" alt="Filigran"><img src="https://filigran.io/wp-content/uploads/2023/08/filigran_text_medium.png" width="200" /></a>
