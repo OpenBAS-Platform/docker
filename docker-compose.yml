@@ -17,7 +17,7 @@ services:
       - "9000:9000"
     environment:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER}
-      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}    
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
     command: server /data
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
@@ -26,7 +26,7 @@ services:
       retries: 3
     restart: always
   openex:
-    image: openexhq/platform:3.3.0
+    image: openexhq/platform:v3.3.0
     environment:
       - SERVER_SSL_KEY-STORE-PASSWORD=${KEYSTORE_PASSWORD}
       - OPENEX_BASE-URL=http://localhost:8080
@@ -46,8 +46,11 @@ services:
       - SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH=${SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH}
       - SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE=${SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE}
       - OPENEX_MAIL_IMAP_ENABLED=false
+      - OPENEX_ADMIN_EMAIL=${OPENEX_ADMIN_EMAIL}
+      - OPENEX_ADMIN_PASSWORD=${OPENEX_ADMIN_PASSWORD}
+      - OPENEX_ADMIN_TOKEN=${OPENEX_ADMIN_TOKEN}
     ports:
-      - "8080:8080"      
+      - "8080:8080"
     depends_on:
       - pgsql
       - minio
