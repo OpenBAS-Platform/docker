@@ -5,7 +5,7 @@ services:
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: openex
+      POSTGRES_DB: openbas
     volumes:
       - pgsqldata:/var/lib/postgresql/data
     restart: always
@@ -20,13 +20,13 @@ services:
       MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
     command: server /data
     restart: always
-  openex:
-    image: openexhq/platform:3.5.0
+  openbas:
+    image: openbashq/platform:3.5.0
     environment:
       - SERVER_SSL_KEY-STORE-PASSWORD=${KEYSTORE_PASSWORD}
-      - OPENEX_BASE-URL=http://localhost:8080
-      - OPENEX_AUTH-LOCAL-ENABLE=true
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://pgsql:5432/openex
+      - OPENBAS_BASE-URL=http://localhost:8080
+      - OPENBAS_AUTH-LOCAL-ENABLE=true
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://pgsql:5432/openbas
       - SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}
       - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
       - MINIO_ENDPOINT=minio
@@ -40,10 +40,10 @@ services:
       - SPRING_MAIL_PROPERTIES_MAIL_SMTP_SSL_ENABLE=${SPRING_MAIL_PROPERTIES_MAIL_SMTP_SSL_ENABLE}
       - SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH=${SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH}
       - SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE=${SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE}
-      - OPENEX_MAIL_IMAP_ENABLED=false
-      - OPENEX_ADMIN_EMAIL=${OPENEX_ADMIN_EMAIL}
-      - OPENEX_ADMIN_PASSWORD=${OPENEX_ADMIN_PASSWORD}
-      - OPENEX_ADMIN_TOKEN=${OPENEX_ADMIN_TOKEN}
+      - OPENBAS_MAIL_IMAP_ENABLED=false
+      - OPENBAS_ADMIN_EMAIL=${OPENBAS_ADMIN_EMAIL}
+      - OPENBAS_ADMIN_PASSWORD=${OPENBAS_ADMIN_PASSWORD}
+      - OPENBAS_ADMIN_TOKEN=${OPENBAS_ADMIN_TOKEN}
     ports:
       - "8080:8080"
     depends_on:
