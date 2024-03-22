@@ -21,7 +21,7 @@ services:
     command: server /data
     restart: always
   openex:
-    image: openexhq/platform:3.5.0
+    image: openexhq/platform:3.5.1
     environment:
       - SERVER_SSL_KEY-STORE-PASSWORD=${KEYSTORE_PASSWORD}
       - OPENEX_BASE-URL=http://localhost:8080
