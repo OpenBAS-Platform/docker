@@ -8,7 +8,7 @@ You can find the detailed documentation about the Docker installation in the [Op
 
 ### Status & bugs
 
-Currently OpenBAS is under heavy development, if you wish to report bugs or ask for new features, you can directly use the [Github issues module](https://github.com/OpenEx-Platform/opencti/issues).
+Currently OpenBAS is under heavy development, if you wish to report bugs or ask for new features, you can directly use the [Github issues module](https://github.com/OpenBAS-Platform/openbas/issues).
 
 ### Discussion
 

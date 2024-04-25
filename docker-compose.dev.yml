@@ -26,5 +26,17 @@ services:
     image: rabbitmq:3.13-management
     restart: unless-stopped
     ports:
-      - 5672:5672
-      - 15672:15672
+      - "5672:5672"
+      - "15672:15672"
+  openbas-dev-caldera:
+    container_name: openbas-dev-caldera
+    image: openbas/caldera-server:5.0.0
+    restart: unless-stopped
+    ports:
+      - "8888:8888"
+    environment:
+      CALDERA_URL: http://localhost:8888
+    volumes:
+      - type: bind
+        source: caldera.yml
+        target: /usr/src/app/conf/local.yml
