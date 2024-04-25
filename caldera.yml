@@ -15,19 +15,19 @@ plugins:
   - training
 users:
   red:
-    red: CHANGEME                                                                     # Change this
+    red: ChangeMe                                                                     # Change this
   blue:
-    blue: CHANGEME                                                                    # Change this
-api_key_red: CHANGEME                                                                 # Change this
-api_key_blue: CHANGEME                                                                # Change this
-api_key: CHANGEME                                                                     # Change this
-crypt_salt: CHANGEME                                                                  # Change this
-encryption_key: CHANGEME                                                              # Change this
-app.contact.http: http://localhost:8888                                               
+    blue: ChangeMe                                                                    # Change this
+api_key_red: ChangeMe                                                                 # Change this
+api_key_blue: ChangeMe                                                                # Change this
+api_key: ChangeMe                                                                     # Change this
+crypt_salt: ChangeMe                                                                  # Change this
+encryption_key: ChangeMe                                                              # Change this
+app.contact.http: http://0.0.0.0:8888                                               
 app.contact.tcp: 0.0.0.0:7010
 app.contact.udp: 0.0.0.0:7011
 app.contact.websocket: 0.0.0.0:7012
-app.contact.dns.domain: localhost                                                  
+app.contact.dns.domain: 127.0.0.1                                                  
 app.contact.dns.socket: 0.0.0.0:53
 app.contact.gist: API_KEY                                                             # Optional
 app.contact.html: /weather                                                            # Optional
@@ -39,7 +39,7 @@ app.contact.tunnel.ssh.host_key_file: REPLACE_WITH_KEY_FILE_PATH                
 app.contact.tunnel.ssh.host_key_passphrase: REPLACE_WITH_KEY_FILE_PASSPHRASE          # Optional
 app.contact.tunnel.ssh.socket: 0.0.0.0:8022
 app.contact.tunnel.ssh.user_name: sandcat                                         
-app.contact.tunnel.ssh.user_password: CHANGEME                                        # Change this
+app.contact.tunnel.ssh.user_password: ChangeMe                                        # Change this
 objects.planners.default: atomic
 requirements:
   go:

@@ -34,10 +34,12 @@ services:
     restart: always
     ports:
       - "8888:8888"
+    environment:
+      CALDERA_URL: http://localhost:8888
     volumes:
       - type: bind
         source: caldera.yml
-        target: /usr/src/app/conf/local.yml    
+        target: /usr/src/app/conf/local.yml
   openbas:
     image: openbas/platform:rolling
     environment:
@@ -73,12 +75,29 @@ services:
       - OPENBAS_ADMIN_EMAIL=${OPENBAS_ADMIN_EMAIL}
       - OPENBAS_ADMIN_PASSWORD=${OPENBAS_ADMIN_PASSWORD}
       - OPENBAS_ADMIN_TOKEN=${OPENBAS_ADMIN_TOKEN}
+      - INJECTOR_CALDERA_URL=http://caldera:8888
+      - INJECTOR_CALDERA_API_KEY=${CALDERA_API_KEY}
+      - COLLECTOR_CALDERA_URL=http://caldera:8888
+      - COLLECTOR_CALDERA_API_KEY=${CALDERA_API_KEY}
     ports:
       - "8080:8080"
     depends_on:
       - pgsql
       - minio
+      - rabbitmq
     restart: always
+  collector-mitre-attack:
+    image: openbas/collector-mitre-attack:rolling
+    environment:
+      - OPENBAS_URL=http://openbas:8080
+      - OPENBAS_TOKEN=${OPENBAS_ADMIN_TOKEN}
+      - COLLECTOR_ID=${COLLECTOR_MITRE_ATTACK_ID} # Valid UUIDv4
+      - CONNECTOR_TYPE=openbas_mitre_attack
+      - "COLLECTOR_NAME=MITRE ATT&CK"
+      - COLLECTOR_LOG_LEVEL=info
+    restart: always
+    depends_on:
+      - openbas
 volumes:
   pgsqldata:
   s3data:
