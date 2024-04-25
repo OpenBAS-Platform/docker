@@ -27,6 +27,8 @@ app.contact.http: http://localhost:8888
 app.contact.tcp: 0.0.0.0:7010
 app.contact.udp: 0.0.0.0:7011
 app.contact.websocket: 0.0.0.0:7012
+app.contact.dns.domain: localhost                                                 
+app.contact.dns.socket: 0.0.0.0:53
 app.contact.gist: API_KEY                                                             # Optional
 app.contact.html: /weather                                                            # Optional
 app.contact.slack.api_key: SLACK_TOKEN                                                # Optional
