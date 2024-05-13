@@ -1,18 +1,3 @@
-host: 0.0.0.0
-port: 8888
-ability_refresh: 60
-plugins:
-  - access
-  - atomic
-  - compass
-  - debrief
-  - fieldmanual
-  - gameboard
-  - manx
-  - response
-  - sandcat
-  - stockpile
-  - training
 users:
   red:
     red: ChangeMe                                                                     # Change this
@@ -23,7 +8,7 @@ api_key_blue: ChangeMe                                                          
 api_key: ChangeMe                                                                     # Change this
 crypt_salt: ChangeMe                                                                  # Change this
 encryption_key: ChangeMe                                                              # Change this
-app.contact.http: http://localhost:8888                                               
+app.contact.http: http://caldera.myopenbas.myorganization.com:8888                    # Change this
 app.contact.tcp: 0.0.0.0:7010
 app.contact.udp: 0.0.0.0:7011
 app.contact.websocket: 0.0.0.0:7012
@@ -51,3 +36,18 @@ requirements:
     module: sys
     type: python_module
     version: 3.8.0
+host: 0.0.0.0
+port: 8888
+ability_refresh: 60
+plugins:
+  - access
+  - atomic
+  - compass
+  - debrief
+  - fieldmanual
+  - gameboard
+  - manx
+  - response
+  - sandcat
+  - stockpile
+  - training
