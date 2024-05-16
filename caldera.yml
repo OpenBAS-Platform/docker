@@ -19,7 +19,6 @@ app.contact.html: /weather                                                      
 app.contact.slack.api_key: SLACK_TOKEN                                                # Optional
 app.contact.slack.bot_id: SLACK_BOT_ID                                                # Optional
 app.contact.slack.channel_id: SLACK_CHANNEL_ID                                        # Optional
-app.contact.tcp: 0.0.0.0:7010
 app.contact.tunnel.ssh.host_key_file: REPLACE_WITH_KEY_FILE_PATH                      # Optional
 app.contact.tunnel.ssh.host_key_passphrase: REPLACE_WITH_KEY_FILE_PASSPHRASE          # Optional
 app.contact.tunnel.ssh.socket: 0.0.0.0:8022
