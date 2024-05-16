@@ -41,7 +41,7 @@ services:
         source: caldera.yml
         target: /usr/src/app/conf/local.yml
   openbas:
-    image: openbas/platform:1.0.0
+    image: openbas/platform:1.0.1
     environment:
       - SERVER_SSL_KEY-STORE-PASSWORD=${KEYSTORE_PASSWORD}
       - OPENBAS_BASE-URL=http://localhost:8080
@@ -89,7 +89,7 @@ services:
       - rabbitmq
     restart: always
   collector-mitre-attack:
-    image: openbas/collector-mitre-attack:1.0.0
+    image: openbas/collector-mitre-attack:1.0.1
     environment:
       - OPENBAS_URL=http://openbas:8080
       - OPENBAS_TOKEN=${OPENBAS_ADMIN_TOKEN}
