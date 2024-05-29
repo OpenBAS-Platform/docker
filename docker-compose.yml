@@ -10,7 +10,7 @@ services:
       - pgsqldata:/var/lib/postgresql/data
     restart: always
   minio:
-    image: minio/minio:RELEASE.2024-01-16T16-07-38Z
+    image: minio/minio:RELEASE.2024-05-28T17-19-04Z
     volumes:
       - s3data:/data
     ports:
