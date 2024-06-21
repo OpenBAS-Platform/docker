@@ -75,9 +75,6 @@ services:
       - OPENBAS_ADMIN_EMAIL=${OPENBAS_ADMIN_EMAIL}
       - OPENBAS_ADMIN_PASSWORD=${OPENBAS_ADMIN_PASSWORD}
       - OPENBAS_ADMIN_TOKEN=${OPENBAS_ADMIN_TOKEN}
-      - EXECUTOR_CALDERA_URL=http://caldera:8888
-      - EXECUTOR_CALDERA_PUBLIC_URL=${CALDERA_PUBLIC_URL}
-      - EXECUTOR_CALDERA_API_KEY=${CALDERA_API_KEY}      
       - INJECTOR_CALDERA_URL=http://caldera:8888
       - INJECTOR_CALDERA_PUBLIC_URL=${CALDERA_PUBLIC_URL}
       - INJECTOR_CALDERA_API_KEY=${CALDERA_API_KEY}
@@ -94,12 +91,22 @@ services:
       - OPENBAS_URL=http://openbas:8080
       - OPENBAS_TOKEN=${OPENBAS_ADMIN_TOKEN}
       - COLLECTOR_ID=${COLLECTOR_MITRE_ATTACK_ID} # Valid UUIDv4
-      - CONNECTOR_TYPE=openbas_mitre_attack
       - "COLLECTOR_NAME=MITRE ATT&CK"
       - COLLECTOR_LOG_LEVEL=info
     restart: always
     depends_on:
       - openbas
+collector-atomic-red-team:
+    image: openbas/collector-atomic-red-team:1.1.1
+    environment:
+      - OPENBAS_URL=http://openbas:8080
+      - OPENBAS_TOKEN=${OPENBAS_ADMIN_TOKEN}
+      - COLLECTOR_ID=${COLLECTOR_ATOMIC_RED_TEAM_ID} # Valid UUIDv4
+      - "COLLECTOR_NAME=Atomic Red Team"
+      - COLLECTOR_LOG_LEVEL=info
+    restart: always
+    depends_on:
+      - openbas      
 volumes:
   pgsqldata:
   s3data:
