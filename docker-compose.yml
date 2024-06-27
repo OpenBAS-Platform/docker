@@ -96,7 +96,7 @@ services:
     restart: always
     depends_on:
       - openbas
-collector-atomic-red-team:
+  collector-atomic-red-team:
     image: openbas/collector-atomic-red-team:1.1.1
     environment:
       - OPENBAS_URL=http://openbas:8080
