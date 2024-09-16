@@ -29,17 +29,6 @@ services:
     volumes:
       - amqpdata:/var/lib/rabbitmq
     restart: always
-  caldera:
-    image: openbas/caldera-server:5.0.0
-    restart: always
-    ports:
-      - "8888:8888"
-    environment:
-      CALDERA_URL: http://localhost:8888
-    volumes:
-      - type: bind
-        source: caldera.yml
-        target: /usr/src/app/conf/local.yml
   openbas:
     image: openbas/platform:1.5.1
     environment:
@@ -75,9 +64,6 @@ services:
       - OPENBAS_ADMIN_EMAIL=${OPENBAS_ADMIN_EMAIL}
       - OPENBAS_ADMIN_PASSWORD=${OPENBAS_ADMIN_PASSWORD}
       - OPENBAS_ADMIN_TOKEN=${OPENBAS_ADMIN_TOKEN}
-      - INJECTOR_CALDERA_URL=http://caldera:8888
-      - INJECTOR_CALDERA_PUBLIC_URL=${CALDERA_PUBLIC_URL}
-      - INJECTOR_CALDERA_API_KEY=${CALDERA_API_KEY}
     ports:
       - "8080:8080"
     depends_on:
