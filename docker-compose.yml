@@ -30,7 +30,7 @@ services:
       - amqpdata:/var/lib/rabbitmq
     restart: always
   openbas:
-    image: openbas/platform:1.7.0
+    image: openbas/platform:1.7.1
     environment:
       - SERVER_SSL_KEY-STORE-PASSWORD=${KEYSTORE_PASSWORD}
       - OPENBAS_BASE-URL=http://localhost:8080
