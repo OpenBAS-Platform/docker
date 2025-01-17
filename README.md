@@ -1,18 +1,59 @@
-# OpenBAS Docker deployment
+# OpenBAS Docker Deployment
 
-## Documentation
+Welcome to the OpenBAS Docker deployment guide! This guide provides resources and information to help you deploy and
+manage OpenBAS using Docker.
 
-You can find the detailed documentation about the Docker installation in the [OpenBAS documentation space](https://docs.openbas.io/latest/deployment/installation/#using-docker).
+---
 
-## Community
+## 📚 Documentation
 
-### Status & bugs
+For detailed instructions on installing OpenBAS using Docker, refer to
+the [OpenBAS documentation space](https://docs.openbas.io/latest/deployment/installation/#using-docker).
 
-Currently OpenBAS is under heavy development, if you wish to report bugs or ask for new features, you can directly use the [Github issues module](https://github.com/OpenBAS-Platform/openbas/issues).
+---
 
-### Discussion
+## 👥 Community
 
-If you need support or you wish to engage a discussion about the OpenEx platform, feel free to join us on our [Slack channel](https://community.filigran.io). You can also send us an email to contact@filigran.io.
+### 🛠️ Status & Bugs
+
+OpenBAS is actively under development. If you encounter bugs, have feature requests, or need help, please report them
+using the [GitHub Issues module](https://github.com/OpenBAS-Platform/openbas/issues). We appreciate your feedback and
+contributions to improve the platform.
+
+### 💬 Discussions
+
+Join our community to engage in discussions, share ideas, and get support:
+
+- **Slack Channel:** Connect with us on [Slack](https://community.filigran.io)
+
+---
+
+## 🔧 Deployment Overview
+
+### Quick Start with Docker Compose
+
+The OpenBAS stack is modular and uses multiple Docker Compose files for easier configuration:
+
+To start OpenBAS with the essential services, run:
+```bash
+   docker-compose -f docker-compose.base.yml up -d
+```
+
+To start OpenBAS with Atomic Red Team threat library, run:
+```bash
+   docker-compose -f docker-compose.base.yml -f docker-compose.atomic-red-team.yml up -d
+```
+
+To start OpenBAS with Caldera, run:
+```bash
+   docker-compose -f docker-compose.base.yml -f docker-compose.caldera.yml up -d
+```
+
+#### Build Your Own Stack
+OpenBAS allows you to customize your stack by selecting specific collectors and injectors to meet your unique needs:
+
+- Additional Collectors: Explore a variety of collectors available here.
+- Additional Injectors: Discover injectors to enhance your simulations here.
 
 ## About
 
