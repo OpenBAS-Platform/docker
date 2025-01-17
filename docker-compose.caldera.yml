@@ -1,0 +1,31 @@
+services:
+  caldera:
+    image: openbas/caldera-server:5.0.0
+    restart: always
+    ports:
+      - "8888:8888"
+    environment:
+      CALDERA_URL: ${CALDERA_PUBLIC_URL:-http://localhost:8888}
+    volumes:
+      - type: bind
+        source: ./caldera.yml
+        target: /usr/src/app/conf/local.yml
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8888" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  openbas:
+    environment:
+      - INJECTOR_CALDERA_ENABLE=true
+      - INJECTOR_CALDERA_URL=${CALDERA_URL:-http://caldera:8888}
+      - INJECTOR_CALDERA_PUBLIC_URL=${CALDERA_PUBLIC_URL:-http://localhost:8888}
+      - INJECTOR_CALDERA_API_KEY=${CALDERA_API_KEY:-ChangeMe}
+      - EXECUTOR_CALDERA_ENABLE=true
+      - EXECUTOR_CALDERA_URL=${CALDERA_URL:-http://caldera:8888}
+      - EXECUTOR_CALDERA_PUBLIC_URL=${CALDERA_PUBLIC_URL:-http://localhost:8888}
+      - EXECUTOR_CALDERA_API_KEY=${CALDERA_API_KEY:-ChangeMe}
+    depends_on:
+      caldera:
+        condition: service_healthy
