@@ -36,17 +36,17 @@ The OpenBAS stack is modular and uses multiple Docker Compose files for easier c
 
 To start OpenBAS with the essential services, run:
 ```bash
-   docker-compose -f docker-compose.base.yml up -d
+   docker compose -f docker-compose.base.yml up -d
 ```
 
 To start OpenBAS with Atomic Red Team threat library, run:
 ```bash
-   docker-compose -f docker-compose.base.yml -f docker-compose.atomic-red-team.yml up -d
+   docker compose -f docker-compose.base.yml -f docker-compose.atomic-red-team.yml up -d
 ```
 
 To start OpenBAS with Caldera, run:
 ```bash
-   docker-compose -f docker-compose.base.yml -f docker-compose.caldera.yml up -d
+   docker compose -f docker-compose.base.yml -f docker-compose.caldera.yml up -d
 ```
 
 #### Build Your Own Stack
