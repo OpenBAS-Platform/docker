@@ -1,6 +1,6 @@
 services:
   collector-atomic-red-team:
-    image: openbas/collector-atomic-red-team:1.11.1
+    image: openbas/collector-atomic-red-team:1.11.4
     environment:
       - OPENBAS_URL=http://openbas:8080
       - OPENBAS_TOKEN=${OPENBAS_ADMIN_TOKEN}
