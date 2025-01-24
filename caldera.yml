@@ -10,7 +10,7 @@ api_key_blue: ChangeMe                                                          
 api_key: ChangeMe                                                                     # Change this
 crypt_salt: ChangeMe                                                                  # Change this
 encryption_key: ChangeMe                                                              # Change this
-app.contact.http: http://caldera.domain.com:8888                                      # Change this
+app.contact.http: http://localhost:8888                                               # Change this
 app.contact.tcp: 0.0.0.0:7010
 app.contact.udp: 0.0.0.0:7011
 app.contact.websocket: 0.0.0.0:7012
