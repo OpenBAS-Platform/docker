@@ -1,0 +1,31 @@
+name: "Release"
+
+on:
+  workflow_call:
+    inputs:
+      previous_version:
+        type: string
+        default: ''
+        required: false
+      new_version:
+        type: string
+        default: ''
+        required: false
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo content
+        uses: actions/checkout@v4
+# Replace all the occurrences of '{0}' with '42' in the README.md file
+      - name: Find and Replace
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "${{ github.event.inputs.previous_version }}"
+          replace: "${{ github.event.inputs.new_version }}"
+          regex: false
+          include: "docker-compose.yml"
+      - name: Push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
