@@ -94,6 +94,11 @@ services:
       rabbitmq:
         condition: service_healthy
     restart: always
+    healthcheck:
+      test: [ "CMD", "wget", "-qO-", "http://openbas:8080/api/health?health_access_key=${OPENBAS_HEALTHCHECK_KEY}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 20
   collector-mitre-attack:
     image: openbas/collector-mitre-attack:1.12.2
     environment:
@@ -102,6 +107,9 @@ services:
       - COLLECTOR_ID=${COLLECTOR_MITRE_ATTACK_ID} # Valid UUIDv4
       - "COLLECTOR_NAME=MITRE ATT&CK"
       - COLLECTOR_LOG_LEVEL=info
+    depends_on:
+      openbas:
+        condition: service_healthy
     restart: always
 volumes:
   pgsqldata:

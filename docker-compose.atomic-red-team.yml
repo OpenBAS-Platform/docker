@@ -7,4 +7,7 @@ services:
       - COLLECTOR_ID=${COLLECTOR_ATOMIC_RED_TEAM_ID} # Valid UUIDv4
       - "COLLECTOR_NAME=Atomic Red Team"
       - COLLECTOR_LOG_LEVEL=info
+    depends_on:
+      openbas:
+        condition: service_healthy
     restart: always
