@@ -34,6 +34,9 @@ Join our community to engage in discussions, share ideas, and get support:
 
 The OpenBAS stack is modular and uses multiple Docker Compose files for easier configuration:
 
+> [!IMPORTANT]
+> Remember to create a .env file from .env.sample and customize the configuration as needed.
+
 To start OpenBAS with the essential services, run:
 ```bash
    docker compose -p openbas -f docker-compose.yml up -d

@@ -48,6 +48,7 @@ services:
     environment:
       # OpenBAS General Configuration
       - OPENBAS_BASE-URL=${OPENBAS_BASE-URL}
+      - SERVER_PORT=80 # if you change this do not forget to change "ports" section and healthy conditions
       - OPENBAS_AUTH-LOCAL-ENABLE=true
       - OPENBAS_ADMIN_EMAIL=${OPENBAS_ADMIN_EMAIL}
       - OPENBAS_ADMIN_PASSWORD=${OPENBAS_ADMIN_PASSWORD}
@@ -84,7 +85,7 @@ services:
       - OPENBAS_MAIL_IMAP_SSL_TRUST=*
       - OPENBAS_MAIL_IMAP_STARTTLS_ENABLE=${OPENBAS_MAIL_IMAP_STARTTLS_ENABLE}
     ports:
-      - "8080:8080"
+      - "8080:80" # If you change the host port (8080) do not forget to update OPENBAS_BASE-URL in you .env
     depends_on:
       pgsql:
         condition: service_healthy
@@ -94,14 +95,14 @@ services:
         condition: service_healthy
     restart: always
     healthcheck:
-      test: [ "CMD", "wget", "-qO-", "${OPENBAS_BASE-URL}/api/health?health_access_key=${OPENBAS_HEALTHCHECK_KEY}" ]
+      test: [ "CMD", "wget", "-qO-", "http://openbas/api/health?health_access_key=${OPENBAS_HEALTHCHECK_KEY}" ]
       interval: 10s
       timeout: 5s
       retries: 20
   collector-mitre-attack:
     image: openbas/collector-mitre-attack:1.12.2
     environment:
-      - OPENBAS_URL=http://openbas:8080
+      - OPENBAS_URL=http://openbas
       - OPENBAS_TOKEN=${OPENBAS_ADMIN_TOKEN}
       - COLLECTOR_ID=${COLLECTOR_MITRE_ATTACK_ID} # Valid UUIDv4
       - "COLLECTOR_NAME=MITRE ATT&CK"
