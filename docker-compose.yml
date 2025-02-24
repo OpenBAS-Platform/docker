@@ -47,8 +47,7 @@ services:
     image: openbas/platform:1.12.2
     environment:
       # OpenBAS General Configuration
-      - SERVER_SSL_KEY-STORE-PASSWORD=${KEYSTORE_PASSWORD}
-      - OPENBAS_BASE-URL=http://localhost:8080
+      - OPENBAS_BASE-URL=${OPENBAS_BASE-URL}
       - OPENBAS_AUTH-LOCAL-ENABLE=true
       - OPENBAS_ADMIN_EMAIL=${OPENBAS_ADMIN_EMAIL}
       - OPENBAS_ADMIN_PASSWORD=${OPENBAS_ADMIN_PASSWORD}
@@ -95,7 +94,7 @@ services:
         condition: service_healthy
     restart: always
     healthcheck:
-      test: [ "CMD", "wget", "-qO-", "http://openbas:8080/api/health?health_access_key=${OPENBAS_HEALTHCHECK_KEY}" ]
+      test: [ "CMD", "wget", "-qO-", "${OPENBAS_BASE-URL}/api/health?health_access_key=${OPENBAS_HEALTHCHECK_KEY}" ]
       interval: 10s
       timeout: 5s
       retries: 20
