@@ -39,14 +39,14 @@ To start OpenBAS with the essential services, run:
    docker compose -f docker-compose.yml up -d
 ```
 
-To start OpenBAS with Atomic Red Team threat library, run:
+To start OpenBAS with the Caldera executor (Caldera used as an agent), run:
 ```bash
-   docker compose -f docker-compose.yml -f docker-compose.atomic-red-team.yml up -d
+   docker compose -f docker-compose.yml -f docker-compose.caldera.yml -f docker-compose.caldera-executor.yml up -d
 ```
 
-To start OpenBAS with Caldera, run:
+To start OpenBAS with the Caldera injector (Caldera used as an implant), run:
 ```bash
-   docker compose -f docker-compose.yml -f docker-compose.caldera.yml up -d
+   docker compose -f docker-compose.yml -f docker-compose.caldera.yml -f docker-compose.caldera-injector.yml up -d
 ```
 
 #### Build Your Own Stack
