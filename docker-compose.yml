@@ -47,7 +47,7 @@ services:
       timeout: 5s
       retries: 5
   openbas:
-    image: openbas/platform:1.13.1
+    image: openbas/platform:1.14.0
     environment:
       # OpenBAS General Configuration
       - SERVER_SSL_KEY-STORE-PASSWORD=${KEYSTORE_PASSWORD}
@@ -98,7 +98,7 @@ services:
         condition: service_healthy
     restart: always
   collector-mitre-attack:
-    image: openbas/collector-mitre-attack:1.13.1
+    image: openbas/collector-mitre-attack:1.14.0
     environment:
       - OPENBAS_URL=http://openbas:8080
       - OPENBAS_TOKEN=${OPENBAS_ADMIN_TOKEN}
@@ -107,7 +107,7 @@ services:
       - COLLECTOR_LOG_LEVEL=info
     restart: always
   collector-atomic-red-team:
-    image: openbas/collector-atomic-red-team:1.13.1
+    image: openbas/collector-atomic-red-team:1.14.0
     environment:
       - OPENBAS_URL=http://openbas:8080
       - OPENBAS_TOKEN=${OPENBAS_ADMIN_TOKEN}
