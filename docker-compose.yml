@@ -50,8 +50,7 @@ services:
     image: openbas/platform:1.14.0
     environment:
       # OpenBAS General Configuration
-      - SERVER_SSL_KEY-STORE-PASSWORD=${KEYSTORE_PASSWORD}
-      - OPENBAS_BASE-URL=http://localhost:8080
+      - OPENBAS_BASE-URL=${OPENBAS_BASE-URL}
       - OPENBAS_AUTH-LOCAL-ENABLE=true
       - OPENBAS_ADMIN_EMAIL=${OPENBAS_ADMIN_EMAIL}
       - OPENBAS_ADMIN_PASSWORD=${OPENBAS_ADMIN_PASSWORD}
@@ -88,7 +87,7 @@ services:
       - OPENBAS_MAIL_IMAP_SSL_TRUST=*
       - OPENBAS_MAIL_IMAP_STARTTLS_ENABLE=${OPENBAS_MAIL_IMAP_STARTTLS_ENABLE}
     ports:
-      - "8080:8080"
+      - "8080:8080" # If you change the host port (the left one) do not forget to update OPENBAS_BASE-URL in you .env
     depends_on:
       pgsql:
         condition: service_healthy
@@ -97,6 +96,11 @@ services:
       rabbitmq:
         condition: service_healthy
     restart: always
+    healthcheck:
+      test: [ "CMD", "wget", "-qO-", "http://openbas:8080/api/health?health_access_key=${OPENBAS_HEALTHCHECK_KEY}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 20
   collector-mitre-attack:
     image: openbas/collector-mitre-attack:1.14.0
     environment:
@@ -105,6 +109,9 @@ services:
       - COLLECTOR_ID=${COLLECTOR_MITRE_ATTACK_ID} # Valid UUIDv4
       - "COLLECTOR_NAME=MITRE ATT&CK"
       - COLLECTOR_LOG_LEVEL=info
+    depends_on:
+      openbas:
+        condition: service_healthy
     restart: always
   collector-atomic-red-team:
     image: openbas/collector-atomic-red-team:1.14.0
@@ -114,6 +121,9 @@ services:
       - COLLECTOR_ID=${COLLECTOR_ATOMIC_RED_TEAM_ID} # Valid UUIDv4
       - "COLLECTOR_NAME=Atomic Red Team"
       - COLLECTOR_LOG_LEVEL=info
+    depends_on:
+      openbas:
+        condition: service_healthy
     restart: always    
 volumes:
   pgsqldata:

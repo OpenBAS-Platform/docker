@@ -3,7 +3,7 @@ services:
     image: openbas/caldera-server:5.1.0
     restart: always
     ports:
-      - "8888:8888"
+      - "8888:8888" # If you change the host port (the left one) do not forget to update CALDERA_PUBLIC_URL everywhere
     environment:
       CALDERA_URL: ${CALDERA_PUBLIC_URL:-http://localhost:8888}
     volumes:
