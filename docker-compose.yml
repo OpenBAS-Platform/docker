@@ -38,7 +38,7 @@ services:
     volumes:
       - type: bind
         source: rabbitmq.conf
-        target: /etc/rabbitmq/rabbitmq.conf      
+        target: /etc/rabbitmq/rabbitmq.conf
       - amqpdata:/var/lib/rabbitmq
     restart: always
     healthcheck:
@@ -50,7 +50,7 @@ services:
     image: openbas/platform:1.14.0
     environment:
       # OpenBAS General Configuration
-      - OPENBAS_BASE-URL=${OPENBAS_BASE-URL}
+      - OPENBAS_BASE-URL=${OPENBAS_BASE_URL}
       - OPENBAS_AUTH-LOCAL-ENABLE=true
       - OPENBAS_ADMIN_EMAIL=${OPENBAS_ADMIN_EMAIL}
       - OPENBAS_ADMIN_PASSWORD=${OPENBAS_ADMIN_PASSWORD}
@@ -124,7 +124,7 @@ services:
     depends_on:
       openbas:
         condition: service_healthy
-    restart: always    
+    restart: always
 volumes:
   pgsqldata:
   s3data:
