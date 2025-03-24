@@ -47,7 +47,7 @@ services:
       timeout: 5s
       retries: 5
   openbas:
-    image: openbas/platform:1.14.0
+    image: openbas/platform:1.14.1
     environment:
       # OpenBAS General Configuration
       - OPENBAS_BASE-URL=${OPENBAS_BASE_URL}
@@ -102,7 +102,7 @@ services:
       timeout: 5s
       retries: 20
   collector-mitre-attack:
-    image: openbas/collector-mitre-attack:1.14.0
+    image: openbas/collector-mitre-attack:1.14.1
     environment:
       - OPENBAS_URL=http://openbas:8080
       - OPENBAS_TOKEN=${OPENBAS_ADMIN_TOKEN}
@@ -114,7 +114,7 @@ services:
         condition: service_healthy
     restart: always
   collector-atomic-red-team:
-    image: openbas/collector-atomic-red-team:1.14.0
+    image: openbas/collector-atomic-red-team:1.14.1
     environment:
       - OPENBAS_URL=http://openbas:8080
       - OPENBAS_TOKEN=${OPENBAS_ADMIN_TOKEN}
