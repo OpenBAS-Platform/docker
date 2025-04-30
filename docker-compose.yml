@@ -60,7 +60,7 @@ services:
       - thread_pool.search.queue_size=5000
       - logger.org.elasticsearch.discovery="ERROR"
       # -XX:UseSVE=0 is necessary for Apple M4 architecture
-      - "ES_JAVA_OPTS=-Xms2G -Xmx2G -XX:+IgnoreUnrecognizedVMOptions -XX:UseSVE=0"
+      - "ES_JAVA_OPTS=-Xms${ELASTIC_MEMORY_SIZE} -Xmx${ELASTIC_MEMORY_SIZE} -XX:+IgnoreUnrecognizedVMOptions -XX:UseSVE=0"
       - "CLI_JAVA_OPTS=-XX:+IgnoreUnrecognizedVMOptions -XX:UseSVE=0"
     restart: always
     ulimits:
