@@ -76,7 +76,7 @@ services:
       timeout: 10s
       retries: 50
   openbas:
-    image: openbas/platform:1.15.2
+    image: openbas/platform:1.16.0
     environment:
       # OpenBAS General Configuration
       - OPENBAS_BASE-URL=${OPENBAS_BASE_URL}
