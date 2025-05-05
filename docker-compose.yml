@@ -46,6 +46,35 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.17.4
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    environment:
+      # Comment-out the line below for a cluster of multiple nodes
+      - discovery.type=single-node
+      # Uncomment the line below below for a cluster of multiple nodes
+      # - cluster.name=docker-cluster
+      - xpack.ml.enabled=false
+      - xpack.security.enabled=false
+      - thread_pool.search.queue_size=5000
+      - logger.org.elasticsearch.discovery="ERROR"
+      # -XX:UseSVE=0 is necessary for Apple M4 architecture
+      - "ES_JAVA_OPTS=-Xms${ELASTIC_MEMORY_SIZE} -Xmx${ELASTIC_MEMORY_SIZE} -XX:+IgnoreUnrecognizedVMOptions -XX:UseSVE=0"
+      - "CLI_JAVA_OPTS=-XX:+IgnoreUnrecognizedVMOptions -XX:UseSVE=0"
+    restart: always
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    healthcheck:
+      test: curl -s http://elasticsearch:9200 >/dev/null || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 50
   openbas:
     image: openbas/platform:1.15.2
     environment:
@@ -67,6 +96,8 @@ services:
       - OPENBAS_RABBITMQ_HOSTNAME=rabbitmq
       - OPENBAS_RABBITMQ_USER=${RABBITMQ_DEFAULT_USER}
       - OPENBAS_RABBITMQ_PASS=${RABBITMQ_DEFAULT_PASS}
+      # ELASTICSEARCH
+      - ENGINE_URL=http://elasticsearch:9200
       # SPRING MAIL Configurations
       - SPRING_MAIL_HOST=${SPRING_MAIL_HOST}
       - SPRING_MAIL_PORT=${SPRING_MAIL_PORT}
@@ -95,6 +126,8 @@ services:
         condition: service_healthy
       rabbitmq:
         condition: service_healthy
+      elasticsearch:
+        condition: service_started
     restart: always
     healthcheck:
       test: [ "CMD", "wget", "-qO-", "http://openbas:8080/api/health?health_access_key=${OPENBAS_HEALTHCHECK_KEY}" ]
@@ -129,3 +162,4 @@ volumes:
   pgsqldata:
   s3data:
   amqpdata:
+  esdata:
