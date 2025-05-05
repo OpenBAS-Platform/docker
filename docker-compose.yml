@@ -147,7 +147,7 @@ services:
         condition: service_healthy
     restart: always
   collector-atomic-red-team:
-    image: openbas/collector-atomic-red-team:1.15.2
+    image: openbas/collector-atomic-red-team:1.16.0
     environment:
       - OPENBAS_URL=http://openbas:8080
       - OPENBAS_TOKEN=${OPENBAS_ADMIN_TOKEN}
