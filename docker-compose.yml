@@ -147,13 +147,13 @@ services:
       openbas:
         condition: service_healthy
     restart: always
-  collector-atomic-red-team:
-    image: openbas/collector-atomic-red-team:1.18.0
+  collector-openbas:
+    image: openbas/collector-openbas:1.18.0
     environment:
       - OPENBAS_URL=http://openbas:8080
       - OPENBAS_TOKEN=${OPENBAS_ADMIN_TOKEN}
-      - COLLECTOR_ID=${COLLECTOR_ATOMIC_RED_TEAM_ID} # Valid UUIDv4
-      - "COLLECTOR_NAME=Atomic Red Team"
+      - COLLECTOR_ID=${COLLECTOR_OPENBAS_ID} # Valid UUIDv4
+      - "COLLECTOR_NAME=OpenBAS Datasets"
       - COLLECTOR_LOG_LEVEL=info
     depends_on:
       openbas:
