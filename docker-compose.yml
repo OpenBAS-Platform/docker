@@ -76,7 +76,7 @@ services:
       timeout: 10s
       retries: 50
   openbas:
-    image: openbas/platform:1.18.4
+    image: openbas/platform:1.18.5
     # If you need (see the doc), uncomment to use a bind mount and set the attribute $OPENBAS_EXTRA_TRUSTED_CERTS_DIR (host folder) in your .env
     #volumes:
     #  - $OPENBAS_EXTRA_TRUSTED_CERTS_DIR:/opt/openbas/additional_certs
@@ -140,7 +140,7 @@ services:
       timeout: 5s
       retries: 20
   collector-mitre-attack:
-    image: openbas/collector-mitre-attack:1.18.4
+    image: openbas/collector-mitre-attack:1.18.5
     environment:
       - OPENBAS_URL=http://openbas:8080
       - OPENBAS_TOKEN=${OPENBAS_ADMIN_TOKEN}
@@ -152,7 +152,7 @@ services:
         condition: service_healthy
     restart: always
   collector-openbas:
-    image: openbas/collector-openbas:1.18.4
+    image: openbas/collector-openbas:1.18.5
     environment:
       - OPENBAS_URL=http://openbas:8080
       - OPENBAS_TOKEN=${OPENBAS_ADMIN_TOKEN}
