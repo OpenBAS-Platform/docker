@@ -21,7 +21,7 @@ jobs:
         working-directory: docker
     steps:
       - name: checkout repo content
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: OpenBAS-Platform/docker
 # Replace all the occurrences of '{0}' with '42' in the README.md file
