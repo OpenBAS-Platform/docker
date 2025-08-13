@@ -152,7 +152,7 @@ services:
         condition: service_healthy
     restart: always
   collector-openbas:
-    image: openbas/collector-openbas:1.18.9
+    image: openbas/collector-openbas:1.18.10
     environment:
       - OPENBAS_URL=http://openbas:8080
       - OPENBAS_TOKEN=${OPENBAS_ADMIN_TOKEN}
