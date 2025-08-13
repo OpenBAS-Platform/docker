@@ -140,7 +140,7 @@ services:
       timeout: 5s
       retries: 20
   collector-mitre-attack:
-    image: openbas/collector-mitre-attack:1.18.9
+    image: openbas/collector-mitre-attack:1.18.10
     environment:
       - OPENBAS_URL=http://openbas:8080
       - OPENBAS_TOKEN=${OPENBAS_ADMIN_TOKEN}
