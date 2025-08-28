@@ -132,7 +132,7 @@ services:
       rabbitmq:
         condition: service_healthy
       elasticsearch:
-        condition: service_started
+        condition: service_healthy
     restart: always
     healthcheck:
       test: [ "CMD", "wget", "-qO-", "http://openbas:8080/api/health?health_access_key=${OPENBAS_HEALTHCHECK_KEY}" ]
